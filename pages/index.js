@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Divisions from '../components/Divisions'
 import Rules from '../components/Rules'
 import RegisterForm from '../components/RegisterForm'
+import Navbar from '../components/Navbar'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
@@ -21,22 +22,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* Navbar Section */}
+      <Navbar />
+
       {/* Hero Section */}
-      <Hero />
+      <section id="hero">...</section>
 
       {/* Divisi */}
       <div data-aos="fade-up">
-        <Divisions />
+        <section id="divisi">...</section>
       </div>
 
       {/* Rules */}
       <div data-aos="fade-up">
-        <Rules />
+        <section id="rules">...</section>
       </div>
 
       {/* Form Pendaftaran */}
       <div data-aos="fade-up">
-        <RegisterForm />
+        <section id="daftar">...</section>
       </div>
 
       {/* Footer */}
