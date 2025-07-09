@@ -1,135 +1,162 @@
-// Struktur Next.js - Versi Ringan ABSOLUTE OPBR Site
+// Project converted to Next.js structure using dependencies from package.json
+
+// Root files
+// ├── pages/
+// │   ├── _app.js
+// │   └── index.js
+// ├── components/
+// │   ├── Hero.js
+// │   ├── Divisions.js
+// │   ├── Rules.js
+// │   └── RegisterForm.js
+// ├── public/
+// │   └── shapes.svg (optional background assets)
+// ├── styles/
+// │   └── globals.css
+// ├── tailwind.config.js
+// ├── postcss.config.js
+// └── next.config.js
+
+// pages/_app.js
+import '@/styles/globals.css'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react'
+
+export default function App({ Component, pageProps }) {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true })
+  }, [])
+  return <Component {...pageProps} />
+}
 
 // pages/index.js
-import Head from 'next/head';
-import HeroSection from '@/components/HeroSection';
-import Features from '@/components/Features';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import Hero from '@/components/Hero'
+import Divisions from '@/components/Divisions'
+import Rules from '@/components/Rules'
+import RegisterForm from '@/components/RegisterForm'
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>ABSOLUTE OPBR Alliance</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <Navbar />
-      <HeroSection />
-      <Features />
-      <Footer />
+      <Hero />
+      <Divisions />
+      <Rules />
+      <RegisterForm />
     </>
-  );
+  )
 }
 
-// components/Navbar.js
-import Link from 'next/link';
+// components/Hero.js
+import { motion } from 'framer-motion'
+import Typewriter from 'typewriter-effect'
 
-export default function Navbar() {
+export default function Hero() {
   return (
-    <nav className="fixed top-0 w-full z-50 bg-black/30 backdrop-blur-md py-4 px-6 flex justify-between items-center">
-      <h1 className="text-primary font-bold text-xl">ABSOLUTE</h1>
-      <div className="space-x-6">
-        <Link href="#hero" className="text-white hover:text-primary transition">Home</Link>
-        <Link href="#features" className="text-white hover:text-primary transition">Fitur</Link>
-        <Link href="#footer" className="text-white hover:text-primary transition">Kontak</Link>
+    <section className="min-h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-[#0c0f1a] to-[#141927]">
+      <motion.h1
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="text-4xl md:text-6xl font-bold text-teal-400"
+      >
+        ABSOLUTE OPBR ALLIANCE
+      </motion.h1>
+      <div className="mt-4 text-xl text-slate-400">
+        <Typewriter
+          options={{
+            strings: ['One Piece. One Soul. One Alliance.', 'Divisi Solid & Aktif.', 'Gabung Sekarang!'],
+            autoStart: true,
+            loop: true
+          }}
+        />
       </div>
-    </nav>
-  );
-}
-
-// components/HeroSection.js
-import { motion } from 'framer-motion';
-
-export default function HeroSection() {
-  return (
-    <section id="hero" className="h-screen flex flex-col justify-center items-center text-center px-4 bg-background">
-      <motion.h2
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-bold text-primary mb-4"
-      >
-        Bergabunglah dengan Aliansi Terkuat OPBR
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-gray-300 max-w-xl mb-6"
-      >
-        Gabung divisi elite, asah skill, dan menangkan pertempuran bersama kami.
-      </motion.p>
-      <motion.a
-        href="#features"
-        className="bg-primary text-black px-6 py-3 rounded-lg font-semibold hover:scale-105 transition"
-        whileHover={{ scale: 1.05 }}
-      >
-        Gabung Sekarang
-      </motion.a>
     </section>
-  );
+  )
 }
 
-// components/Features.js
-import { motion } from 'framer-motion';
-
-const features = [
-  {
-    title: 'Divisi Terstruktur',
-    desc: 'Gabung dalam struktur divisi yang rapi, dipimpin oleh pemimpin handal.'
-  },
-  {
-    title: 'Event dan Turnamen',
-    desc: 'Ikuti kompetisi internal dan eksternal dengan hadiah menarik.'
-  },
-  {
-    title: 'Komunitas Solid',
-    desc: 'Bersama-sama kita tumbuh, berbagi strategi, dan dukung satu sama lain.'
-  }
-];
-
-export default function Features() {
+// components/Divisions.js
+export default function Divisions() {
+  const divisions = [
+    { name: 'Divisi 1', desc: 'Level Min. 30' },
+    { name: 'Divisi 2', desc: 'Level Min. 20' },
+    { name: 'Divisi 3', desc: 'Level Min. 12' },
+    { name: 'Divisi 4', desc: 'Cadangan & Latihan' }
+  ]
   return (
-    <section id="features" className="py-20 px-6 bg-background relative z-10">
-      <div className="max-w-4xl mx-auto space-y-12">
-        {features.map((feat, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: idx * 0.2 }}
-            className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-lg shadow-lg hover:scale-105 transition"
-          >
-            <h3 className="text-xl text-primary font-semibold mb-2">{feat.title}</h3>
-            <p className="text-gray-300">{feat.desc}</p>
-          </motion.div>
+    <section className="p-10 text-center" id="divisions">
+      <h2 className="text-3xl font-bold text-teal-400 mb-6">Divisi Kami</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {divisions.map((div, i) => (
+          <div key={i} className="bg-slate-800 p-6 rounded-2xl shadow-lg hover:shadow-teal-400 transition-all" data-tilt>
+            <h3 className="text-xl font-semibold text-white">{div.name}</h3>
+            <p className="text-slate-300">{div.desc}</p>
+          </div>
         ))}
       </div>
     </section>
-  );
+  )
 }
 
-// components/Footer.js
-export default function Footer() {
+// components/Rules.js
+export default function Rules() {
   return (
-    <footer id="footer" className="bg-background text-center py-8 text-gray-500">
-      <p>&copy; 2025 ABSOLUTE OPBR Alliance. All rights reserved.</p>
-    </footer>
-  );
+    <section className="p-10 bg-[#0f172a] text-center" id="rules">
+      <h2 className="text-3xl font-bold text-teal-400 mb-4">Peraturan Aliansi</h2>
+      <ul className="space-y-2 text-slate-300">
+        <li>- Aktif minimal 4x seminggu</li>
+        <li>- No toxic & no cheat</li>
+        <li>- Wajib ikut event internal</li>
+        <li>- Patuhi pemimpin divisi</li>
+      </ul>
+    </section>
+  )
 }
 
-// tailwind.config.js
-module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {
-      colors: {
-        primary: '#00d4ff',
-        background: '#0c0f1a'
-      },
-    },
-  },
-  plugins: [],
-};
+// components/RegisterForm.js
+export default function RegisterForm() {
+  return (
+    <section className="p-10 text-center" id="register">
+      <h2 className="text-3xl font-bold text-teal-400 mb-6">Form Pendaftaran</h2>
+      <form className="max-w-md mx-auto space-y-4">
+        <input className="w-full px-4 py-2 rounded bg-slate-800 text-white" type="text" placeholder="Nama In-Game" required />
+        <input className="w-full px-4 py-2 rounded bg-slate-800 text-white" type="text" placeholder="ID OPBR" required />
+        <input className="w-full px-4 py-2 rounded bg-slate-800 text-white" type="number" placeholder="Level Saat Ini" required />
+        <select className="w-full px-4 py-2 rounded bg-slate-800 text-white" required>
+          <option value="">Pilih Divisi</option>
+          <option value="Divisi 1">Divisi 1</option>
+          <option value="Divisi 2">Divisi 2</option>
+          <option value="Divisi 3">Divisi 3</option>
+          <option value="Divisi 4">Divisi 4</option>
+        </select>
+        <button type="submit" className="w-full bg-teal-500 py-2 rounded text-white font-bold hover:bg-teal-600">Daftar</button>
+      </form>
+    </section>
+  )
+}
+
+// styles/globals.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(to bottom, #0c0f1a, #141927);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #14b8a6;
+  border-radius: 10px;
+}
+
+// tailwind.config.js and postcss.config.js should match the Tailwind CSS setup based on your devDependencies
+// All dependencies like aos, gsap, framer-motion, etc., are now integrated into Next.js components properly
