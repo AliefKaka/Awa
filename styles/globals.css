@@ -1,22 +1,70 @@
-/* styles/globals.css */
+/* globals.css - Global styling untuk ABSOLUTE OPBR Alliance */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Typography dan dasar */
+body {
+  @apply bg-gradient-to-b from-[#0c0f1a] to-[#141927] text-white font-sans antialiased;
+}
 
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  background: linear-gradient(to bottom, #0c0f1a, #141927);
-  color: white;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-}
-
+/* Scrollbar custom */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #14b8a6;
-  border-radius: 10px;
+  background: #38bdf8;
+  border-radius: 100px;
+}
+
+/* Animasi tombol & efek hover */
+button,
+a {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+button:hover,
+a:hover {
+  transform: translateY(-2px);
+}
+
+/* Card UI */
+.card-glow {
+  @apply bg-[#1e293b] text-white rounded-2xl shadow-xl p-6 transition-all hover:shadow-[0_0_25px_#0ff];
+}
+
+/* Section */
+section {
+  @apply py-16 px-6 md:px-24;
+}
+
+/* Title */
+.section-title {
+  @apply text-4xl md:text-5xl font-bold text-center mb-8 text-cyan-400 drop-shadow-md;
+}
+
+/* Input & Form */
+input,
+select,
+textarea {
+  @apply w-full px-4 py-2 bg-slate-800 text-white rounded-lg outline-none focus:ring-2 focus:ring-cyan-400;
+}
+
+/* Button utama */
+.btn-primary {
+  @apply bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-6 rounded-lg;
+}
+
+/* AOS animation override */
+[data-aos] {
+  @apply transition-all duration-1000 ease-in-out;
 }
