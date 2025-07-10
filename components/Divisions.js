@@ -1,31 +1,34 @@
 // components/Divisions.js
 import { motion } from 'framer-motion'
-import { Sparkles } from 'lucide-react'
 
 const divisions = [
-  { name: 'Divisi 1', min: 'Level 30+', color: 'from-cyan-500 to-blue-700' },
-  { name: 'Divisi 2', min: 'Level 20+', color: 'from-purple-500 to-indigo-700' },
-  { name: 'Divisi 3', min: 'Level 12+', color: 'from-rose-500 to-pink-600' },
-  { name: 'Special Force', min: 'Elite Only', color: 'from-yellow-400 to-orange-600' },
+  { id: 1, title: 'Divisi 1', desc: 'Elite. Level 30+ dan aktif grinding setiap hari.' },
+  { id: 2, title: 'Divisi 2', desc: 'Kompetitif. Level 20+ dan aktif event & boss.' },
+  { id: 3, title: 'Divisi 3', desc: 'Santai. Level 12+ cukup login dan partisipasi.' },
 ]
 
 export default function Divisions() {
   return (
-    <section id="divisi" className="py-16 px-6 text-center">
-      <h2 className="section-title">Divisi Kami</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        {divisions.map((div, i) => (
-          <motion.div
-            key={i}
-            data-aos="zoom-in"
-            whileHover={{ scale: 1.05 }}
-            className={`card-glow bg-gradient-to-br ${div.color} p-6 rounded-2xl shadow-lg`}
-          >
-            <Sparkles className="mx-auto text-white mb-2" />
-            <h3 className="text-xl font-bold">{div.name}</h3>
-            <p className="text-sm text-white/80">{div.min}</p>
-          </motion.div>
-        ))}
+    <section className="py-20 bg-[#0e101a] text-white" id="divisi">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-cyan-400">
+          Divisi Kami
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {divisions.map((div) => (
+            <motion.div
+              key={div.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="bg-[#1a1d2e] p-6 rounded-2xl shadow-md hover:scale-105 transition-transform border border-cyan-700"
+            >
+              <h3 className="text-xl font-semibold text-cyan-300 mb-2">{div.title}</h3>
+              <p className="text-sm text-slate-300">{div.desc}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )
