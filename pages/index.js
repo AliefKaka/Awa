@@ -1,11 +1,10 @@
 // pages/index.js
 import Head from 'next/head'
-import Hero from '../components/Hero.js'
-import Divisions from '../components/Divisions.js'
-import Rules from '../components/Rules.js'
-import RegisterForm from '../components/RegisterForm.js'
-import Navbar from '../components/Navbar.js'
-import SwipeCards from '../components/SwipeCards.js'
+import Hero from '../components/Hero'
+import Divisions from '../components/Divisions'
+import Rules from '../components/Rules'
+import RegisterForm from '../components/RegisterForm'
+import Navbar from '../components/Navbar'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
@@ -27,22 +26,24 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section id="hero">...</section>
+      <section id="hero">
+        <Hero />
+      </section>
 
       {/* Divisi */}
-      <div data-aos="fade-up">
-        <section id="divisi">...</section>
-      </div>
+      <section id="divisi" data-aos="fade-up">
+        <Divisions />
+      </section>
 
       {/* Rules */}
-      <div data-aos="fade-up">
-        <section id="rules">...</section>
-      </div>
+      <section id="rules" data-aos="fade-up">
+        <Rules />
+      </section>
 
       {/* Form Pendaftaran */}
-      <div data-aos="fade-up">
-        <section id="daftar">...</section>
-      </div>
+      <section id="daftar" data-aos="fade-up">
+        <RegisterForm />
+      </section>
 
       {/* Footer */}
       <footer className="text-center py-6 text-slate-500 text-sm">
