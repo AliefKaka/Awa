@@ -1,26 +1,32 @@
 // components/Hero.js
-import { motion } from 'framer-motion'
+import { Spline } from '@splinetool/react-spline'
+import Lottie from '@lottiefiles/dotlottie-react'
 import Typewriter from 'typewriter-effect'
+import animationData from '../public/scan.lottie.json'
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-[#0c0f1a] to-[#141927]">
-      <motion.h1
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="text-4xl md:text-6xl font-bold text-teal-400"
-      >
-        ABSOLUTE OPBR ALLIANCE
-      </motion.h1>
-      <div className="mt-4 text-xl text-slate-400">
-        <Typewriter
-          options={{
-            strings: ['One Piece. One Soul. One Alliance.', 'Divisi Solid & Aktif.', 'Gabung Sekarang!'],
-            autoStart: true,
-            loop: true
-          }}
-        />
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-70 pointer-events-none">
+        <Spline scene="https://prod.spline.design/hbX2OdN9k6OeYO3z/scene.splinecode" />
+      </div>
+
+      <div className="z-10 relative max-w-3xl px-6">
+        <h1 className="text-4xl md:text-6xl font-bold text-cyan-400 drop-shadow-lg">
+          ABSOLUTE OPBR ALLIANCE
+        </h1>
+        <div className="mt-4 text-lg text-slate-300 font-mono">
+          <Typewriter
+            options={{
+              strings: ['Bersatu. Bertempur. Menang.', 'Aliansi OPBR Terbesar.'],
+              autoStart: true,
+              loop: true,
+            }}
+          />
+        </div>
+        <div className="mt-6 flex justify-center">
+          <Lottie animationData={animationData} style={{ width: 150 }} loop autoplay />
+        </div>
       </div>
     </section>
   )
